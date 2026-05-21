@@ -1,0 +1,4 @@
+Google,www.google.com:443
+GitHUb,www.github.com:443
+StackOverFlow,www.stackoverflow.com:443
+Undefined,www.ret.com:123

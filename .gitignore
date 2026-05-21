@@ -1,0 +1,27 @@
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+*.prof
+
+# Go build artifacts
+/bin/
+/dist/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# IDE/editor
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Coverage and logs
+coverage.out
+*.log
