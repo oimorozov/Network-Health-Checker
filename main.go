@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bufio"
+	"bytes"
 	"fmt"
 	"net"
 	"os"
@@ -15,26 +17,15 @@ type Server struct {
 
 func parseFile(file []byte) []Server {
 	var servers []Server
-	var name, url string
-	var field string
-	for _, ch := range file {
-		switch ch {
-		case ',':
-			name = strings.TrimSpace(field)
-			field = ""
-		case '\n':
-			url = strings.TrimSpace(field)
-			field = ""
-			if name != "" && url != "" {
-				servers = append(servers, Server{Name: name, URL: url})
-			}
-		default:
-			field += string(ch)
+	scanner := bufio.NewScanner(bytes.NewReader(file))
+	for scanner.Scan() {
+		line := scanner.Text()
+		parts := strings.Split(line, ",")
+		if len(parts) != 2 {
+			continue
 		}
-	}
-	if strings.TrimSpace(field) != "" {
-		url = strings.TrimSpace(field)
-		field = ""
+		name := strings.TrimSpace(parts[0])
+		url := strings.TrimSpace(parts[1])
 		if name != "" && url != "" {
 			servers = append(servers, Server{Name: name, URL: url})
 		}
@@ -61,9 +52,9 @@ func main() {
 		conn, err := net.DialTimeout("tcp", serv.URL, 3*time.Second)
 		if err != nil {
 			fmt.Printf("Failed to connect to %s: %v\n", serv.Name, err)
-		} else {
-			defer conn.Close()
-			fmt.Printf("Successfully connected to %s\n", serv.Name)
+			continue
 		}
+		fmt.Printf("Successfully connected to %s\n", serv.Name)
+		conn.Close()
 	}
 }
