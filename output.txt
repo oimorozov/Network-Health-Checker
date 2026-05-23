@@ -1,0 +1,102 @@
+Health check results
+--------------------
+Successfully connected to Yandex-DNS-Family
+Successfully connected to Yandex-DNS-Primary
+Successfully connected to Yandex-DNS-Safe
+Successfully connected to Yandex-Web-01
+Failed to connect to Localhost-Test-01:dial tcp 127.0.0.1:22: connect: connection refused
+Failed to connect to Localhost-Test-02:dial tcp 127.0.0.1:80: connect: connection refused
+Successfully connected to Google-DNS-Primary
+Successfully connected to Cloudflare-DNS-Secondary
+Successfully connected to Google-Web-01
+Successfully connected to GitHub-Web
+Successfully connected to Microsoft-Web
+Successfully connected to Wikipedia-Web
+Successfully connected to Bitbucket-Web
+Successfully connected to Apple-Web
+Successfully connected to Yandex-Mirror-01
+Successfully connected to Yandex-Mirror-02
+Successfully connected to Cisco-OpenDNS
+Successfully connected to AdGuard-DNS
+Successfully connected to Quad9-DNS
+Failed to connect to Dead-Final-Host:dial tcp 192.0.2.99:9999: i/o timeout
+Failed to connect to Dead-Router-02:dial tcp 192.0.2.2:80: i/o timeout
+Failed to connect to Dead-Router-01:dial tcp 192.0.2.1:80: i/o timeout
+Failed to connect to Dead-Router-03:dial tcp 192.0.2.3:80: i/o timeout
+Failed to connect to Dead-Router-04:dial tcp 192.0.2.4:80: i/o timeout
+Failed to connect to Dead-Router-05:dial tcp 192.0.2.5:80: i/o timeout
+Successfully connected to Stepik-Web
+Successfully connected to MailRu-Web
+Successfully connected to Gosuslugi-Web
+Successfully connected to VK-Web
+Failed to connect to Dead-Switch-01:dial tcp 192.0.2.10:22: i/o timeout
+Successfully connected to StackOverflow-Web
+Failed to connect to Dead-Switch-03:dial tcp 192.0.2.12:22: i/o timeout
+Failed to connect to Dead-Switch-02:dial tcp 192.0.2.11:22: i/o timeout
+Failed to connect to Dead-Switch-04:dial tcp 192.0.2.13:22: i/o timeout
+Failed to connect to Dead-Switch-05:dial tcp 192.0.2.14:22: i/o timeout
+Failed to connect to Dead-Server-01:dial tcp 192.0.2.21:443: i/o timeout
+Failed to connect to Dead-Server-02:dial tcp 192.0.2.22:443: i/o timeout
+Failed to connect to Dead-Server-03:dial tcp 192.0.2.23:443: i/o timeout
+Failed to connect to Dead-Server-04:dial tcp 192.0.2.24:443: i/o timeout
+Failed to connect to Dead-Server-05:dial tcp 192.0.2.25:443: i/o timeout
+Failed to connect to Dead-Server-06:dial tcp 192.0.2.26:443: i/o timeout
+Successfully connected to Docker-Hub
+Failed to connect to Dead-Server-07:dial tcp 192.0.2.27:443: i/o timeout
+Failed to connect to Dead-Server-08:dial tcp 192.0.2.28:443: i/o timeout
+Failed to connect to Dead-Server-09:dial tcp 192.0.2.29:443: i/o timeout
+Successfully connected to Golang-Org
+Successfully connected to Apache-Web
+Successfully connected to Python-Org
+Successfully connected to Yandex-DNS-Secondary
+Successfully connected to Reddit-Web
+Successfully connected to GitLab-Web
+Successfully connected to Nginx-Web
+Failed to connect to Dead-Server-10:dial tcp 192.0.2.30:443: i/o timeout
+Failed to connect to Dead-Host-07:dial tcp 192.0.2.67:3389: i/o timeout
+Failed to connect to Dead-Node-01:dial tcp 192.0.2.41:8080: i/o timeout
+Failed to connect to Dead-Node-02:dial tcp 192.0.2.42:8080: i/o timeout
+Failed to connect to Dead-Node-03:dial tcp 192.0.2.43:8080: i/o timeout
+Failed to connect to Dead-Node-04:dial tcp 192.0.2.44:8080: i/o timeout
+Failed to connect to Dead-Node-05:dial tcp 192.0.2.45:8080: i/o timeout
+Failed to connect to Dead-Node-06:dial tcp 192.0.2.46:8080: i/o timeout
+Failed to connect to Dead-Node-07:dial tcp 192.0.2.47:8080: i/o timeout
+Successfully connected to Zoom-Web
+Failed to connect to Dead-Node-08:dial tcp 192.0.2.48:8080: i/o timeout
+Successfully connected to Amazon-Web
+Successfully connected to Yahoo-Web
+Successfully connected to Cloudflare-CDN
+Failed to connect to Dead-Node-09:dial tcp 192.0.2.49:8080: i/o timeout
+Failed to connect to Dead-Node-10:dial tcp 192.0.2.50:8080: i/o timeout
+Failed to connect to Telegram-Web:dial tcp 149.154.167.99:443: i/o timeout
+Failed to connect to Dead-Host-01:dial tcp 192.0.2.61:3389: i/o timeout
+Failed to connect to Dead-Host-02:dial tcp 192.0.2.62:3389: i/o timeout
+Successfully connected to Habr-Web
+Failed to connect to Dead-Host-03:dial tcp 192.0.2.63:3389: i/o timeout
+Failed to connect to Dead-Host-04:dial tcp 192.0.2.64:3389: i/o timeout
+Successfully connected to Fastly-CDN
+Failed to connect to Dead-Host-05:dial tcp 192.0.2.65:3389: i/o timeout
+Successfully connected to Level3-DNS
+Failed to connect to Dead-Host-06:dial tcp 192.0.2.66:3389: i/o timeout
+Successfully connected to Cloudflare-Web
+Failed to connect to Dead-Host-08:dial tcp 192.0.2.68:3389: i/o timeout
+Failed to connect to Dead-Host-09:dial tcp 192.0.2.69:3389: i/o timeout
+Failed to connect to Dead-Host-10:dial tcp 192.0.2.70:3389: i/o timeout
+Failed to connect to Yandex-CDN:dial tcp 87.250.250.3:443: i/o timeout
+Successfully connected to Cloudflare-DNS-Primary
+Failed to connect to Dead-Sensor-07:dial tcp 192.0.2.87:502: i/o timeout
+Failed to connect to Dead-Sensor-03:dial tcp 192.0.2.83:502: i/o timeout
+Failed to connect to Dead-Sensor-04:dial tcp 192.0.2.84:502: i/o timeout
+Successfully connected to Quad1111-Alt
+Failed to connect to Dead-Sensor-05:dial tcp 192.0.2.85:502: i/o timeout
+Successfully connected to Google-DNS-Secondary
+Failed to connect to Dead-Sensor-06:dial tcp 192.0.2.86:502: i/o timeout
+Successfully connected to Google-Web-02
+Successfully connected to Yandex-Web-02
+Successfully connected to NpmJS-Registry
+Failed to connect to Dead-Sensor-10:dial tcp 192.0.2.90:502: i/o timeout
+Failed to connect to Dead-Sensor-08:dial tcp 192.0.2.88:502: i/o timeout
+Successfully connected to Archive-Org
+Failed to connect to Dead-Sensor-09:dial tcp 192.0.2.89:502: i/o timeout
+Failed to connect to Dead-Sensor-01:dial tcp 192.0.2.81:502: i/o timeout
+Failed to connect to Dead-Sensor-02:dial tcp 192.0.2.82:502: i/o timeout
