@@ -17,9 +17,10 @@ type Server struct {
 	URL  string
 }
 
-func parseArgs() (string, time.Duration) {
+func parseArgs() (string, time.Duration, int) {
 	filePath := flag.String("file", "", "Path to input file")
 	timeout := flag.Duration("timeout", 3*time.Second, "Connection timeout (e.g. 2s, 500ms)")
+	threadCount := flag.Int("threads", 10, "Number of threads (max 30)")
 	flag.Parse()
 
 	if *filePath == "" {
@@ -34,7 +35,11 @@ func parseArgs() (string, time.Duration) {
 		os.Exit(1)
 	}
 
-	return *filePath, *timeout
+	if *threadCount > 30 {
+		*threadCount = 30
+	}
+
+	return *filePath, *timeout, *threadCount
 }
 
 func parseFile(file []byte) []Server {
@@ -56,7 +61,7 @@ func parseFile(file []byte) []Server {
 }
 
 func main() {
-	filePath, timeout := parseArgs()
+	filePath, timeout, threadCount := parseArgs()
 
 	file, err := os.ReadFile(filePath)
 	if err != nil {
@@ -65,7 +70,7 @@ func main() {
 	}
 
 	wg := sync.WaitGroup{}
-	semaphore := make(chan struct{}, 10)
+	semaphore := make(chan struct{}, threadCount)
 	mu := sync.Mutex{}
 	servers := parseFile(file)
 
@@ -77,6 +82,7 @@ func main() {
 	defer output_file.Close()
 	output_file.WriteString("Health check results\n--------------------\n")
 
+	startTime := time.Now()
 	for _, serv := range servers {
 		wg.Add(1)
 		go func(s Server) {
@@ -88,14 +94,18 @@ func main() {
 			if err != nil {
 				mu.Lock()
 				output_file.WriteString(fmt.Sprintf("Failed to connect to %s:%v\n", s.Name, err))
+				fmt.Printf("Failed to connect to %s:%v\n", s.Name, err)
 				mu.Unlock()
 			} else {
 				mu.Lock()
 				output_file.WriteString(fmt.Sprintf("Successfully connected to %s\n", s.Name))
+				fmt.Printf("Successfully connected to %s\n", s.Name)
 				mu.Unlock()
 				conn.Close()
 			}
 		}(serv)
 	}
 	wg.Wait()
+	endTime := time.Since(startTime).Milliseconds()
+	fmt.Printf("Time: %d ms\n", endTime)
 }
