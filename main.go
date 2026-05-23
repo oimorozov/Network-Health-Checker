@@ -49,16 +49,19 @@ func main() {
 		os.Exit(1)
 	}
 	wg := sync.WaitGroup{}
+	semaphore := make(chan struct{}, 10)
 	servers := parseFile(file)
 	for _, serv := range servers {
 		wg.Add(1)
 		go func(s Server) {
 			defer wg.Done()
-			conn, err := net.DialTimeout("tcp", serv.URL, 3*time.Second)
+			defer func() { <-semaphore }()
+			semaphore <- struct{}{}
+			conn, err := net.DialTimeout("tcp", s.URL, 3*time.Second)
 			if err != nil {
-				fmt.Printf("Failed to connect to %s: %v\n", serv.Name, err)
+				fmt.Printf("Failed to connect to %s:%v\n", s.Name, err)
 			} else {
-				fmt.Printf("Successfully connected to %s\n", serv.Name)
+				fmt.Printf("Successfully connected to %s\n", s.Name)
 				conn.Close()
 			}
 		}(serv)
