@@ -51,6 +51,7 @@ func main() {
 
 	wg := sync.WaitGroup{}
 	semaphore := make(chan struct{}, 10)
+	mu := sync.Mutex{}
 	servers := parseFile(file)
 
 	output_file, err := os.Create("output.txt")
@@ -70,9 +71,13 @@ func main() {
 			semaphore <- struct{}{}
 			conn, err := net.DialTimeout("tcp", s.URL, 3*time.Second)
 			if err != nil {
+				mu.Lock()
 				output_file.WriteString(fmt.Sprintf("Failed to connect to %s:%v\n", s.Name, err))
+				mu.Unlock()
 			} else {
+				mu.Lock()
 				output_file.WriteString(fmt.Sprintf("Successfully connected to %s\n", s.Name))
+				mu.Unlock()
 				conn.Close()
 			}
 		}(serv)
