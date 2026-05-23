@@ -7,6 +7,7 @@ import (
 	"net"
 	"os"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -47,14 +48,20 @@ func main() {
 		fmt.Printf("Failed to read file: %v\n", err)
 		os.Exit(1)
 	}
+	wg := sync.WaitGroup{}
 	servers := parseFile(file)
 	for _, serv := range servers {
-		conn, err := net.DialTimeout("tcp", serv.URL, 3*time.Second)
-		if err != nil {
-			fmt.Printf("Failed to connect to %s: %v\n", serv.Name, err)
-			continue
-		}
-		fmt.Printf("Successfully connected to %s\n", serv.Name)
-		conn.Close()
+		wg.Add(1)
+		go func(s Server) {
+			defer wg.Done()
+			conn, err := net.DialTimeout("tcp", serv.URL, 3*time.Second)
+			if err != nil {
+				fmt.Printf("Failed to connect to %s: %v\n", serv.Name, err)
+			} else {
+				fmt.Printf("Successfully connected to %s\n", serv.Name)
+				conn.Close()
+			}
+		}(serv)
 	}
+	wg.Wait()
 }
