@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"flag"
 	"fmt"
 	"net"
 	"os"
@@ -14,6 +15,26 @@ import (
 type Server struct {
 	Name string
 	URL  string
+}
+
+func parseArgs() (string, time.Duration) {
+	filePath := flag.String("file", "", "Path to input file")
+	timeout := flag.Duration("timeout", 3*time.Second, "Connection timeout (e.g. 2s, 500ms)")
+	flag.Parse()
+
+	if *filePath == "" {
+		args := flag.Args()
+		if len(args) > 0 {
+			*filePath = args[0]
+		}
+	}
+
+	if *filePath == "" {
+		flag.Usage()
+		os.Exit(1)
+	}
+
+	return *filePath, *timeout
 }
 
 func parseFile(file []byte) []Server {
@@ -35,15 +56,9 @@ func parseFile(file []byte) []Server {
 }
 
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("Usage: go run main.go <file>")
-		os.Exit(1)
-	}
-	if len(os.Args) > 2 {
-		fmt.Println("Usage: go run main.go <file>")
-		os.Exit(1)
-	}
-	file, err := os.ReadFile(os.Args[1])
+	filePath, timeout := parseArgs()
+
+	file, err := os.ReadFile(filePath)
 	if err != nil {
 		fmt.Printf("Failed to read file: %v\n", err)
 		os.Exit(1)
@@ -69,7 +84,7 @@ func main() {
 			defer func() { <-semaphore }()
 
 			semaphore <- struct{}{}
-			conn, err := net.DialTimeout("tcp", s.URL, 3*time.Second)
+			conn, err := net.DialTimeout("tcp", s.URL, timeout)
 			if err != nil {
 				mu.Lock()
 				output_file.WriteString(fmt.Sprintf("Failed to connect to %s:%v\n", s.Name, err))
